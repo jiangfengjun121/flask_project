@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tips Manager</title>
+</head>
+<body>
+    {% for tip in tips %}
+        {{ tip.tips_name }}<br>
+        {{ tip.category_name }}<br>
+        {{ tip.tips_description }}<br>
+        {{ tip.tips_date }}<br>
+    {% endfor %}
+</body>
+</html>
