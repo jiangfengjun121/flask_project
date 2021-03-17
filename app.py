@@ -99,7 +99,8 @@ def logout():
 
 @app.route("/add_tip")
 def add_tip():
-    return render_template("add_tip.html")
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_tip.html", categories=categories)
 
 
 if __name__ == "__main__":
