@@ -3,6 +3,7 @@
 
 
     <h3 class="center-align">Add Tips</h3>
+    <!------------Category Selection------------->
 <div class="row card-panel">
     <div class="row">
         <div class="input-field col s12">
@@ -13,10 +14,10 @@
                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                 {% endfor %}
             </select>
-            <label for="category_name">Tip Category</label>
+            <label for="category_name"></label>
         </div>
         </div>
-        <form class="col s12" method="POST" action="">
+        <form class="col s12" method="POST" action="{{ url_for('add_tip') }}">
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-pencil-alt prefix"></i>
@@ -25,14 +26,16 @@
                     <label for="tips_name">Tips Name</label>
                 </div>
             </div>
+            <!----------------------Tips Description-------------->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix"></i>
-                    <textarea id="tips_description" name="task_description" minlength="5"
+                    <textarea id="tips_description" name="tips_description" minlength="5"
                         maxlength="200" class="materialize-textarea validate" required></textarea>
                     <label for="tips_description">Tips Description</label>
                 </div>
             </div>
+            <!---------------Tips Date------------->
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-calendar-alt prefix"></i>
@@ -40,7 +43,14 @@
                     <label for="tips_date">Tips Date</label>
                 </div>
             </div>
-			
+            <!---------------Submit Button -------------->
+            <div class="row">
+                <div class="col s12 center-align">
+                <button class="btn-large teal lighten-1" type="submit" name="action">Submit
+                    <i class="material-icons right"></i>
+                </button>
+                </div>
+            </div>
         </form>
     </div>
 
