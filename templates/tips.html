@@ -2,26 +2,20 @@
 {% block tips %}
 
 
-    {% for tip in tips %}
-        {{ tip.tips_name }}<br>
-        {{ tip.category_name }}<br>
-        {{ tip.tips_description }}<br>
-        {{ tip.tips_date }}<br>
-    {% endfor %}
-
+    
     <ul class="collapsible">
+        {% for tip in tips %}
         <li>
-            <div class="collapsible-header teal lighten-1"><i class="fas fa-caret-down"></i>First</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            <div class="collapsible-header teal lighten-1">
+                <i class="fas fa-caret-down"></i>
+                <strong>{{ tip.tips_name }}</strong> : {{ tip.tips_date }}
+            </div>
+            <div class="collapsible-body">
+                <strong>{{ tip.category_name }}</strong>
+                <p>{{ tip.tips_description }}</p>
+            </div>
         </li>
-        <li>
-            <div class="collapsible-header teal lighten-1"><i class="fas fa-caret-down"></i>Second</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-            <div class="collapsible-header teal lighten-1"><i class="fas fa-caret-down"></i>Third</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
+        {% endfor %}
     </ul>
 
 {% endblock %}
