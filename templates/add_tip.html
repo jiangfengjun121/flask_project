@@ -2,13 +2,13 @@
 {% block tips %}
 
 
-    <h3 class="center-align teal lighten-1">Add Tips</h3>
+    <h3 class="center-align">Add Tips</h3>
 
     <div class="row card-panel teal lighten-1">
         <form class="col s12" method="POST" action="">
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-pencil-alt prefix teal lighten-1"></i>
+                    <i class="fas fa-pencil-alt prefix"></i>
                     <input id="task_name" name="task_name" minlength="5" maxlength="50"
                         type="text" class="validate" required>
                     <label for="task_name">Tips Name</label>
@@ -16,7 +16,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-align-left prefix teal lighten-1"></i>
+                    <i class="fas fa-align-left prefix"></i>
                     <textarea id="task_description" name="task_description" minlength="5"
                         maxlength="200" class="materialize-textarea validate" required></textarea>
                     <label for="task_description">Tips Description</label>
@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="fas fa-calendar-alt prefix teal lighten-1"></i>
+                    <i class="fas fa-calendar-alt prefix"></i>
                     <input id="due_date" name="due_date" type="text" class="datepicker validate" required>
                     <label for="due_date">Tips Date</label>
                 </div>
