@@ -97,8 +97,8 @@ def logout():
     return redirect(url_for("login"))
     
 
-@app.route("/add_tips")
-def add_tips():
+@app.route("/add_tip")
+def add_tip():
     return render_template("add_tip.html")
 
 
