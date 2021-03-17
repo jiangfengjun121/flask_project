@@ -99,7 +99,7 @@ def logout():
 
 @app.route("/add_tips")
 def add_tips():
-    return render_template("add_tips.html")
+    return render_template("add_tip.html")
 
 
 if __name__ == "__main__":
