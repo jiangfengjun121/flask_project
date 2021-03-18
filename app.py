@@ -115,6 +115,7 @@ def add_tip():
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_tip.html", categories=categories)
 
+
 @app.route("/edit_tip/<tip_id>", methods=["GET", "POST"])
 def edit_tip(tip_id):
     if request.method == "POST":
@@ -134,6 +135,11 @@ def edit_tip(tip_id):
     return render_template("edit_tips.html", tip=tip, categories=categories)
 
 
+@app.route("/delete_tip/<tip_id>")
+def delete_tip(tip_id):
+    mongo.db.tips.remove({"_id": ObjectId(tip_id)})
+    flash("Tips Deleted Succesfully")
+    return redirect(url_for("get_tips"))
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
