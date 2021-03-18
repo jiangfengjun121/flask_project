@@ -9,20 +9,25 @@
         <div class="input-field col s12">
             <i class="fas fa-folder-open prefix"></i>
             <select id="category_name" name="category_name" class="validate" required>
-                <option value="" disabled selected>Choose Category</option>
-                {% for category in categories %}
-                   <option value="{{ category.category_name }}">{{ category.category_name }}</option>
-                {% endfor %}
+                <option value="" disabled>Choose Category</option>
+            {% for category in categories %}
+                {% if category.category_name == tip.category_name %}
+                   <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                {% else %}
+                    <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                {% endif %}
+            {% endfor %}
             </select>
             <label for="category_name"></label>
         </div>
         </div>
+        <!-----------Tips name------->
         <form class="col s12" method="POST" action="{{ url_for('edit_tip', tip_id=tip._id) }}">
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-pencil-alt prefix"></i>
                     <input id="tips_name" name="tips_name" minlength="5" maxlength="50"
-                        type="text" class="validate" required>
+                       value="{{ tip.tips_name}}" type="text" class="validate" required>
                     <label for="tips_name">Tips Name</label>
                 </div>
             </div>
@@ -31,7 +36,9 @@
                 <div class="input-field col s12">
                     <i class="fas fa-align-left prefix"></i>
                     <textarea id="tips_description" name="tips_description" minlength="5"
-                        maxlength="200" class="materialize-textarea validate" required></textarea>
+                     maxlength="200" class="materialize-textarea validate" required>
+                     {{- tip.tips_description -}}
+                    </textarea>
                     <label for="tips_description">Tips Description</label>
                 </div>
             </div>
@@ -39,13 +46,18 @@
             <div class="row">
                 <div class="input-field col s12">
                     <i class="fas fa-calendar-alt prefix"></i>
-                    <input id="tips_date" name="tips_date" type="text" class="datepicker validate" required>
+                    <input id="tips_date" name="tips_date" type="text"
+                     value="{{ tip.tips_date}}" class="datepicker validate" required>
                     <label for="tips_date">Tips Date</label>
                 </div>
             </div>
             <!---------------Submit Button -------------->
             <div class="row">
                 <div class="col s12 center-align">
+                <!---cancel button----->
+                 <a href="{{ url_for('get_tips') }}" class="btn-large red text-shadow">
+                        Cancel <i class="fas fa-times-circle right"></i>
+                    </a>
                 <button class="btn-large teal lighten-1" type="submit" name="action">Edit Tips
                     <i class="fas fa-edit right"></i>
                 </button>
