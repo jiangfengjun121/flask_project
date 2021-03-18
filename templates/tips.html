@@ -1,17 +1,21 @@
 {% extends "main.html" %}
 {% block tips %}
 
-
+    <h3 class="center-align">All Tips</h3>
     
     <ul class="collapsible">
         {% for tip in tips %}
         <li>
             <div class="collapsible-header teal lighten-1">
-                <div class="col s3 alert-btn">
-                    <a href="" class="btn-small blue lighten-1">Done</a>
+                <div class="col s3">
+                    
+                    {% if session.user|lower == tip.created_by|lower %}
+                     <a href="" class="btn-small blue lighten-1">Done</a>
                      <a href="{{ url_for('edit_tip', tip_id=tip._id) }}" class="btn-small yellow darken-3">Edit</a>
+                     <i class="fas fa-caret-down"></i>
+                    {% endif %}
                 </div>
-                <i class="fas fa-caret-down"></i>
+                
                 <strong>{{ tip.tips_name }}</strong> : {{ tip.tips_date }}
             </div>
             <div class="collapsible-body">
