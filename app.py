@@ -115,6 +115,13 @@ def add_tip():
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("add_tip.html", categories=categories)
 
+@app.route("/edit_tip/<tip_id>", methods=["GET", "POST"])
+def edit_tip(tip_id):
+    tip = mongo.db.tips.find_one({"_id": ObjectId(tip_id)})
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("edit_tips.html", tip=tip, categories=categories)
+
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
