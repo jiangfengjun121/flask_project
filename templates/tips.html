@@ -7,6 +7,10 @@
         {% for tip in tips %}
         <li>
             <div class="collapsible-header teal lighten-1">
+                <div class="col s3 alert-btn">
+                    <a href="" class="btn-small blue lighten-1">Done</a>
+                     <a href="" class="btn-small yellow darken-3">Edit</a>
+                </div>
                 <i class="fas fa-caret-down"></i>
                 <strong>{{ tip.tips_name }}</strong> : {{ tip.tips_date }}
             </div>
