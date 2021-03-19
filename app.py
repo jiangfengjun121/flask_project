@@ -158,7 +158,7 @@ def add_category():
         flash("New Category Added")
         return redirect(url_for("get_categories"))
 
-        return render_template("add_categories.html")   
+    return render_template("add_categories.html")
 
 
 if __name__ == "__main__":
