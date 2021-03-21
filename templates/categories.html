@@ -11,6 +11,16 @@
         </div>
     </div>
 
+    <div id="confirm_modal" class="modal" style="max-width: 300px; transition: 0.4s; top: 100px; z-index: 100">
+        <div class="modal-content teal text-shadow center-align">
+          <h4>Really Delete?</h4>
+        </div>
+        <div class="modal-footer" style="text-align: center">
+          <a onclick="hideModal()" class="btn yellow accent-4">No</a>
+          <a href="#" id="yes_confirm" class="btn red lighten-1">Yes</a>
+        </div>
+    </div>
+
     <div class="row">
         {% for category in categories %}
             <div class="col s12 m3">
@@ -20,11 +30,32 @@
                     </div>
                     <div class="card-action">
                         <a href="{{ url_for('edit_category',category_id=category._id) }}" class="btn yellow accent-4">Edit</a>
-                        <a href="{{ url_for('delete_category',category_id=category._id) }}" class="btn red lighten-1">Delete</a>
+{#                        <a href="{{ url_for('delete_category',category_id=category._id) }}" class="btn red lighten-1">Delete</a>#}
+                        <a id="confirm_modal_button" onclick="openModal()" data-url="{{ url_for('delete_category',category_id=category._id) }}" class="btn red lighten-1">Delete</a>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
+
+    <script>
+
+        function disableActions(bDisable = "none") {
+            let cardActions = document.getElementsByClassName("card-action");
+            for (let i = 0; i < cardActions.length; i++) {
+                cardActions[i].style.pointerEvents = bDisable
+            }
+        }
+        function openModal() {
+            let url = $('#confirm_modal_button').data('url');
+            $('#yes_confirm').attr('href', url);
+            $("#confirm_modal").show();
+            disableActions();
+        }
+        function hideModal() {
+            $('#confirm_modal').hide();
+            disableActions("auto");
+        }
+    </script>
 
 {% endblock %}
