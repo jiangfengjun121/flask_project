@@ -39,6 +39,15 @@
                 <strong>{{ tip.category_name }}</strong>
                 <p>{{ tip.tips_description }}</p>
                 <p><em>by: {{ tip.created_by }}</em></p>
+                    {% if  tip.tips_image_array %}
+                        <div class="row " style="display: inline; align-items: center; justify-content: center" >
+                        {% for tip_image in tip.tips_image_array %}
+                            <div class="col" style="max-width: 25%">
+                                <img src="{{ tip_image }}" style="width: 100%; height: auto" alt="{{ tip_image }}"/>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    {% endif %}
             </div>
         </li>
         {% endfor %}

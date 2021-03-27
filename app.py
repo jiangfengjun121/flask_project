@@ -12,11 +12,11 @@ if os.path.exists("env.py"):
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-# os.environ.setdefault("IP", "0.0.0.0")
-# os.environ.setdefault("PORT", "5000")
-# os.environ.setdefault("SECRET_KEY", "=dLIHjX@V4J>C[uVEG[v8!{dB3+Xrq")
-# os.environ.setdefault("MONGO_URI", "mongodb+srv://root:User78@cluster0.ubune.mongodb.net/fix_managers?retryWrites=true&w=majority")
-# os.environ.setdefault("MONGO_DBNAME", "fix_managers")
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("PORT", "5000")
+os.environ.setdefault("SECRET_KEY", "=dLIHjX@V4J>C[uVEG[v8!{dB3+Xrq")
+os.environ.setdefault("MONGO_URI", "mongodb+srv://root:User78@cluster0.ubune.mongodb.net/fix_managers?retryWrites=true&w=majority")
+os.environ.setdefault("MONGO_DBNAME", "fix_managers")
 
 app = Flask(__name__)
 
@@ -121,9 +121,8 @@ def add_tip():
             os.mkdir(target)
 
 
-        tips_image = ""
-        if request.files.getlist("tips_image"):
-            img = request.files.getlist("tips_image")[0]
+        tips_image_arr = []
+        for img in request.files.getlist("tips_image"):
             filename = img.filename
             curtime = math.floor(time.time())
 
@@ -139,7 +138,8 @@ def add_tip():
 
             destination = "/".join([target, realfilename])
             img.save(destination)
-            tips_image = realfilename
+            realPath = "/static/uploads/" + realfilename;
+            tips_image_arr.append(realPath);
 
         tip = {
             "category_name": request.form.get("category_name"),
@@ -149,8 +149,8 @@ def add_tip():
             "created_by": session["user"]
         }
 
-        if tips_image != "":
-            tip["tips_image"] = "/uploads/" + tips_image
+        if len(tips_image_arr) > 0:
+            tip["tips_image_array"] = tips_image_arr
 
         mongo.db.tips.insert_one(tip)
         flash("Tips Added Successfully ")
