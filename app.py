@@ -26,7 +26,6 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-
 @app.route("/")
 @app.route("/get_tips")
 def get_tips():
@@ -38,7 +37,6 @@ def search():
     query = request.form.get("query")
     tips = list(mongo.db.tips.find({"$text": {"$search": query}}))
     return render_template("tips.html", tips=tips)
-
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
